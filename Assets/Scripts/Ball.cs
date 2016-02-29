@@ -2,12 +2,13 @@
 using System.Collections;
 
 public class Ball : MonoBehaviour {
-	public Paddle paddle;
+	private Paddle paddle;
 	private Vector3 paddleToBallVector;
 	private bool hasStarted = false;
 	
 	// Use this for initialization
 	void Start () {
+		paddle = GameObject.FindObjectOfType<Paddle>();
 		paddleToBallVector =  this.transform.position - paddle.transform.position;
 	}
 	
@@ -17,10 +18,8 @@ public class Ball : MonoBehaviour {
 			this.transform.position = paddle.transform.position + paddleToBallVector;
 			if (Input.GetMouseButtonDown(0)){
 				hasStarted = true;
-				print ("mouse click");
 				this.rigidbody2D.velocity = new Vector2 (2f, 10f);
 			}
 		}
-		
 	}
 }
